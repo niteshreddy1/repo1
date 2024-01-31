@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: deployment-1
+    labels:
+       app: eks-pipe
+
+spec:
+  selector:
+    matchLabels:
+      app: eks-pipe
+  template:
+     metadata:
+       name: pod01
+       labels:
+         app: eks-pipe
+     spec:
+       containers:
+        - name: container
+          image: public.ecr.aws/i3h9p9x0/ecr1:latest
+          ports:
+           - containerPort: 80
+  replicas: 3
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: mysvc
+    labels:
+      app: eks-pipe
+
+spec:
+ selector:
+   app: eks-pipe
+
+ type: LoadBalancer
+ ports:
+    - port: 80
+      targetPort: 80
