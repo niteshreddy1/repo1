@@ -5,7 +5,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy your Java application JAR file into the container
-ADD hello.jar /app/
+ADD HelloWorld.jar /app/
 
 # Set the command to run your Java application when the container starts
-CMD ["java", "-jar", "hello.jar"]
+CMD ["java", "-jar", "HelloWorld.jar"]
