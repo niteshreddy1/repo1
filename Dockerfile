@@ -1,8 +1,5 @@
-FROM openjdk:8-jre-alpine
-
-WORKDIR /app
-
-COPY target/hello-world-1.0-SNAPSHOT.jar /app/app.jar
-
-CMD ["java", "-jar", "app.jar"]
+FROM httpd:latest
+ADD index.html /usr/local/apache2/conf/httpd.conf
+EXPOSE 80
+CMD ["httpd", "-D", "FOREGROUND"]
 
